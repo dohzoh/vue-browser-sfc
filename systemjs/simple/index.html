@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Component Test</title>
+  <script src="https://unpkg.com/getlibs"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <my-component></my-component>
+  </div>
+</body>
+<script>
+  SystemJS.config({
+    map: {
+      'Vue': 'https://unpkg.com/vue/',
+    }
+  });
+
+  Promise.all([
+    System.import("Vue"),
+    System.import("./src/example.vue"),
+  ]).then(([Vue, App]) => { 
+    var app = new Vue({
+      el: '#wrapper',
+      components: {
+        myComponent: App,
+      },
+    });
+  });
+</script>
+</html>
