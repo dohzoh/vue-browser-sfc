@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>VueJS Component Test</title>
-	<script src="https://unpkg.com/vue"></script>
-	<script defer src="https://unpkg.com/@webcomponents/webcomponentsjs@1/webcomponents-loader.js"></script>
+  <meta charset="UTF-8">
+  <title>VueJS Component Test</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script defer src="https://unpkg.com/@webcomponents/webcomponentsjs@1/webcomponents-loader.js"></script>
 </head>
+
 <body>
-	<link rel="import" href="./src/example.vue">
-	<div id="wrapper">
-		<my-component></my-component>
-	</div>
+  <link rel="import" href="./src/example.vue">
+  <div id="wrapper">
+    <my-component></my-component>
+  </div>
 </body>
-	<script>
-		window.addEventListener('WebComponentsReady', function (e) {
-			var app = new Vue({
-				el : '#wrapper',
-			});
-		});
-	</script>
+<script>
+  window.addEventListener('WebComponentsReady', function (e) {
+    var app = new Vue({
+      el: '#wrapper',
+    });
+  });
+</script>
+
 </html>
