@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Component Test</title>
+  <script src="https://unpkg.com/requirejs/require.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <my-component></my-component>
+  </div>
+</body>
+<script>
+  require.config({
+    paths: {
+      'Vue': 'https://unpkg.com/vue/dist/vue',
+      'vue': 'https://unpkg.com/require-vuejs/dist/require-vuejs',
+    },
+  });
+  require(['Vue', 'vue!src/example.vue'],(Vue, App) => {
+    var app = new Vue({
+      el: '#wrapper',
+      components:{
+        myComponent: App,
+      },
+    });
+  });
+</script>
+
+</html>
