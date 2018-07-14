@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Component Test</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <my-component></my-component>
+  </div>
+</body>
+<script type="module">
+    import App from "./src/example.js";
+
+    var app = new Vue({
+      el: '#wrapper',
+      components: {
+        myComponent: App,
+      },
+    });
+</script>
+</html>
