@@ -2,7 +2,7 @@ import VuePlugin from 'rollup-plugin-vue'
 
 export default {
   output:{
-    format: "esm",
+    format: "esm"
   },
   plugins: [VuePlugin(/* VuePluginOptions */)]
 }

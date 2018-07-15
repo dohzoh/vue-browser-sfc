@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>Require Vue</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css"/>
+        <style>
+            .component-fade-enter-active, .component-fade-leave-active {
+              transition: opacity .3s ease;
+            }
+            .component-fade-enter, .component-fade-leave-to
+            /* .component-fade-leave-active for <2.1.8 */ {
+              opacity: 0;
+            }
+        </style>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>    
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>    
+	</head>
+	<body>
+		<div id="app" class="container is-fluid">
+            <div class="tabs">
+                <ul>
+                    <li>Started at: {{started}}</li>
+                    <router-link tag="li" active-class="is-active" to="/home"  ><a>Home          </a></router-link>
+                    <router-link tag="li" active-class="is-active" to="/inner" ><a>Inner Template</a></router-link>
+                    <router-link tag="li" active-class="is-active" to="/vue"   ><a>Vue component </a></router-link>
+                    <router-link tag="li" active-class="is-active" to="/async" ><a>Async loaded  </a></router-link>
+                </ul>
+            </div> 
+            <div class="column is-half">
+                <transition name="component-fade" mode="out-in">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+                </transition>
+            </div>
+        </div>
+  </body>
+<script>
+    // Handle Loaded Templates.
+    function templatesLoaded(event) {
+      console.log('Templates loaded.', event);
+    }
+
+    // Handle Errors.
+    function templatesFailed(event, event) {
+      console.log('Templates could not be loaded.');
+    }
+</script>
+
+<link id="home" rel="import" href="./home.vue" onload="templatesLoaded(event)" onerror="templatesFailed(event)">        
+<link rel="import" href="./inner_template.vue" />        
+<link rel="import" href="./component.vue" />        
+<link rel="import" href="./async.vue" />        
+
+<script>
+  Vue.use(VueRouter);
+  var router = new VueRouter({
+    routes: [
+      { path: "/home", component: vueHome },
+      { path: "/inner", component: vueInner },
+      { path: "/vue", component: vueComp },
+      { path: "/async", component: vueAsync },
+    ]
+  });
+
+  new Vue({
+    data: {
+      started: new Date()
+    },
+    router: router,
+    el: "#app"
+  });
+</script>
+</html>
